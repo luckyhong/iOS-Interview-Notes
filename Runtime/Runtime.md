@@ -1,4 +1,4 @@
-##### 1.实例对象的数据结构？
+### 1.实例对象的数据结构？
 
 - 具体可以参看 `Runtime` 源代码，在文件 `objc-private.h` 的第 `127-232` 行。
 
@@ -11,7 +11,7 @@
 
   本质上 `objc_object` 的私有属性只有一个 `isa` 指针。指向 `类对象` 的内存地址。
 
-##### 2.类对象的数据结构？
+### 2.类对象的数据结构？
 
 具体可以参看 `Runtime` 源代码。
 
@@ -38,11 +38,11 @@ struct objc_class : objc_object {
 - `Cache`: 方法的缓存列表
 - `data`: 顾名思义，就是数据。是一个被封装好的 `class_rw_t` 。
 
-##### 3.元类对象的数据结构?
+### 3.元类对象的数据结构?
 
 `元类对象` 和 `类对象` 数据结构是一致的的 ，参见第二题。
 
-##### 4.`Category` 的实现原理？
+### 4.`Category` 的实现原理？
 
 > 被添加在了 `class_rw_t` 的对应结构里。
 
@@ -66,13 +66,11 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 }
 ```
 
-
-
 `Category` 在刚刚编译完的时候，和原来的类是分开的，只有在程序运行起来后，通过 `Runtime` ，`Category` 和原来的类才会合并到一起。
 
 `mememove`，`memcpy`：这俩方法是位移、复制，简单理解就是原有的方法移动到最后，根根新开辟的空间，把前面的位置留给分类，然后分类中的方法，按照倒序依次插入，可以得出的结论就就是，越晚参与编译的分类，里面的方法才是生效的那个。
 
-##### 5.如何给 `Category` 添加属性？关联对象以什么形式进行存储？
+### 5.如何给 `Category` 添加属性？关联对象以什么形式进行存储？
 
 查看的是 `关联对象` 的知识点。
 
@@ -98,18 +96,18 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 @end
 ```
 
-##### 6.`Category` 有哪些用途？
+### 6.`Category` 有哪些用途？
 
 - 给系统类添加方法、属性（需要关联对象）。
 - 对某个类大量的方法，可以实现按照不同的名称归类。
 
-##### 7.`Category` 和 `Extension` 有什么区别
+### 7.`Category` 和 `Extension` 有什么区别
 
 - `分类` 的加载在 `运行时`，`类拓展` 的加载在 `编译时`。
 - `类拓展` 不能给系统的类添加方法。
 - `类拓展` 只以声明的形式存在，一般存在 .m 文件中。
 
-##### 8.说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过?
+### 8.说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过?
 
 交换方法，可以结合 `Aspect` 的使用一起说，其实方法交换，应用于统计个页面停留时长，记录用户路径，Hook系统方法啥的有不少用途。
 
@@ -146,7 +144,7 @@ Method Swizzling 是一种在 Objective-C 运行时中动态交换方法实现�
 
 在上面的代码中，我们通过 category 扩展了 UIViewController 类，重写了 viewDidAppear 方法，并使用 Method Swizzling 技术将原有的 viewDidAppear 方法实现与我们自己的 swizzled_viewDidAppear 方法实现进行交换。这样，在每次调用原有的 viewDidAppear 方法时，实际上会调用我们自己的 swizzled_viewDidAppear 方法，从而实现了在方法调用前后打印日志的功能
 
-##### 9.如何实现动态添加方法和属性？
+### 9.如何实现动态添加方法和属性？
 
 在 Objective-C 中，动态添加方法和属性可以使用 Objective-C Runtime 提供的函数实现。
 
@@ -221,7 +219,7 @@ objc_setAssociatedObject(self, @selector(propertyName), @"propertyValue", OBJC_A
 
 以上是动态添加方法和属性的基本步骤，当然还需要根据实际情况进行适当的修改和补充。需要注意的是，动态添加方法和属性可能会影响代码可读性和可维护性，因此应该在必要的情况下使用，并且需要仔细评估其风险和影响。
 
-##### 10.说一下对 `isa` 指针的理解， 对象的`isa` 指针指向哪里？`isa` 指针有哪两种类型？
+### 10.说一下对 `isa` 指针的理解， 对象的`isa` 指针指向哪里？`isa` 指针有哪两种类型？
 
 ```
 isa` 等价于 `is kind of
@@ -287,7 +285,7 @@ union isa_t
 }
 ```
 
-##### 11.`Obj-C` 中的类信息存放在哪里？
+### 11.`Obj-C` 中的类信息存放在哪里？
 
 类方法存储在元类。
 
@@ -295,7 +293,7 @@ union isa_t
 - 类方法存放在 meta-class 对象中。
 - 成员变量的具体指，存放在 instance 对象中。
 
-##### 12.一个 `NSObject` 对象占用多少内存空间？
+### 12.一个 `NSObject` 对象占用多少内存空间？
 
 结论：受限于内存分配的机制，一个 `NSObject`对象都会分配 `16Bit` 的内存空间。但是实际上在64位下，只使用了 `8bit`，在32位下，只使用了 `4bit`。
 
@@ -370,7 +368,7 @@ size_t class_getInstanceSize(Class cls)
 
 可以通过以下网址 ：[openSource.apple.com/tarballs](https://github.com/liberalisman/iOS-InterviewQuestion-collection/blob/master/Runtime/openSource.apple.com/tarballs) 来查看源代码。
 
-##### 13.说一下对 `class_rw_t` 的理解？
+### 13.说一下对 `class_rw_t` 的理解？
 
 `rw`代表可读可写。
 
@@ -402,7 +400,7 @@ struct class_rw_t {
     }
 ```
 
-##### 14.说一下对 `class_ro_t` 的理解？
+### 14.说一下对 `class_ro_t` 的理解？
 
 存储了当前类在编译期就已经确定的属性、方法以及遵循的协议。
 
@@ -427,7 +425,7 @@ struct class_ro_t {
 
 `baseMethodList`，`baseProtocols`，`ivars`，`baseProperties`三个都是一唯数组。
 
-##### 15.`Runtime` 消息解析
+### 15.`Runtime` 消息解析
 
 如果当前类没有对应的实例方法，系统会调用如下方法，可以选择在这个时机动态添加
 
@@ -479,15 +477,15 @@ void vc_newPerson(id obj,SEL _cmd) {
 }
 ```
 
-##### 16.如何运用 `Runtime` 字典转模型？
+### 16.如何运用 `Runtime` 字典转模型？
 
 `Runtime` 遍历 `ivar_list`,结合 `KVC` 赋值。
 
-##### 17.如何运用 `Runtime` 进行模型的归解档
+### 17.如何运用 `Runtime` 进行模型的归解档
 
 `Runtime` 遍历 `ivar_list`。
 
-##### 18.在 `Obj-C` 中为什么叫发消息而不叫函数调用？
+### 18.在 `Obj-C` 中为什么叫发消息而不叫函数调用？
 
 在 Objective-C 中，方法调用通常被称为“发送消息”（send message），而不是“函数调用”（function call）。
 
@@ -505,7 +503,7 @@ void vc_newPerson(id obj,SEL _cmd) {
 
 综上所述，Objective-C 中为方法调用称为“发送消息”，更符合其动态绑定的特性，强调了方法调用的动态性和灵活性。
 
-##### 19.结合 objc_msgsend 讲一下，接收消息的过程？
+### 19.结合 objc_msgsend 讲一下，接收消息的过程？
 
 在 Objective-C 中，消息的接收过程一般是通过 `objc_msgSend` 函数来实现的。
 
@@ -530,7 +528,7 @@ id objc_msgSend(id self, SEL sel, ...) {
 
 综上所述，Objective-C 中的消息接收过程是通过 `objc_msgSend` 函数实现的，该函数根据消息的选择器和接收者的 isa 指针查找方法实现并执行，实现了 Objective-C 的动态绑定特性。
 
-##### 20.说一下 `Runtime` 的方法缓存？存储的形式、数据结构以及查找的过程？
+### 20.说一下 `Runtime` 的方法缓存？存储的形式、数据结构以及查找的过程？
 
 `cache_t`增量扩展的哈希表结构。哈希表内部存储的 `bucket_t`。
 
@@ -586,13 +584,13 @@ bucket_t * cache_t::find(cache_key_t k, id receiver)
 
 上面是查询散列表函数，其中`cache_hash(k, m)`是静态内联方法，将传入的`key`和`mask`进行`&`操作返回`uint32_t`索引值。`do-while`循环查找过程，当发生冲突`cache_next`方法将索引值减1。
 
-##### 21.是否了解 `Type Encoding`?
+### 21.是否了解 `Type Encoding`?
 
 在 Objective-C 中，每个方法都有一个类型编码（Type Encoding），用于描述方法的返回值类型和参数类型。Type Encoding 是一个字符串，其中包含了多个字符和符号，每个字符和符号都代表了一个类型或类型修饰符。例如，`"v@:"` 表示方法的返回值类型为 void，参数类型分别为 id 和 SEL。
 
 总之，Type Encoding 是 Objective-C Runtime 中用于描述类型信息的一种编码方式，它能够准确地描述方法的返回值类型和参数类型，是 Objective-C 动态特性的重要基础之一。
 
-##### 22.`Objective-C` 如何实现多重继承？
+### 22.`Objective-C` 如何实现多重继承？
 
 `Objective-C` 只支持多层继承，不支持多重继承。想实现的话，可以使用协议。
 
@@ -734,17 +732,17 @@ Animal 类定义了一个属性 name 和一个方法 eat，Flyable 协议定义�
 
 这样，Bird 类就可以同时继承 Animal 类和实现 Flyable 协议的方法了。使用协议的方式，我们可以很方便地实现多重继承的功能。需要注意的是，协议只能定义方法，不能定义属性，因此在使用协议实现多重继承时，需要注意属性的继承问题。
 
-##### 23.`Category` 可不可以添加实例对象？为什么？
+### 23.`Category` 可不可以添加实例对象？为什么？
 
 答案是不可以。 Category 的结构体内部没有容纳 Ivar 的数据结构。
 
 有很详细的分析，具体可以看[这篇文章](https://www.jianshu.com/p/dcc3284b65bf)
 
-##### 24.`Obj-c`对象、类的本质是通过什么数据结构实现的？
+### 24.`Obj-c`对象、类的本质是通过什么数据结构实现的？
 
 结构体。譬如一个最常见的 `Nsobject` 对象。将其编译为 `C++` 代码后，实际上就是一个 `Nsobject_Impl` 结构体。
 
-##### 25.`Category` 在编译过后，是在什么时机与原有的类合并到一起的？
+### 25.`Category` 在编译过后，是在什么时机与原有的类合并到一起的？
 
 在编译过程中，Category 是独立编译的，它会生成一个单独的 Mach-O 文件。当程序运行时，Objective-C Runtime 会在加载 Mach-O 文件时动态地将 Category 合并到原有的类中。
 
