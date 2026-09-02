@@ -1,3 +1,5 @@
+# 消息传递方式（Notification / KVO / Delegate 等）
+
 ### 1.说一下 `NSNotification` 的实现机制？
 
 哈希表 + 观察者模式，通知涉及到线程的知识，还有合成通知，默认是同步的等等。
