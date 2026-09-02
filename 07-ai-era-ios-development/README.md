@@ -6,10 +6,10 @@
 
 | 分类 | 关注点 | 面试官想看什么 |
 | --- | --- | --- |
-| [01·AI 编程工具与研发效率](01-AI编程工具与研发效率.md) | Cursor / Xcode Predictive Code / Claude Code / Copilot 怎么用、AI 生成代码的坑 | 你是否理性、高效地使用工具，而不是盲目依赖 |
-| [02·苹果端侧 AI 技术栈](02-苹果端侧AI技术栈.md) | Core ML、Apple Intelligence、Foundation Models framework、Neural Engine | 你对苹果自家 AI 生态的了解深度 |
-| [03·大模型能力集成到 iOS App](03-大模型能力集成到iOS-App.md) | 流式响应、上下文管理、多模态输入、安全性 | 你能不能把 AI 特性真正落地成可用的产品功能 |
-| [04·职业发展与面试软实力](04-职业发展与面试软实力.md) | "AI 会不会取代 iOS 开发"、简历怎么写、传统八股是否还重要 | 你对行业变化的判断力和表达能力 |
+| [01·AI 编程工具与研发效率](01-ai-coding-tools-and-productivity.md) | Cursor / Xcode Predictive Code / Claude Code / Copilot 怎么用、AI 生成代码的坑 | 你是否理性、高效地使用工具，而不是盲目依赖 |
+| [02·苹果端侧 AI 技术栈](02-apple-on-device-ai-stack.md) | Core ML、Apple Intelligence、Foundation Models framework、Neural Engine | 你对苹果自家 AI 生态的了解深度 |
+| [03·大模型能力集成到 iOS App](03-llm-integration-in-ios-apps.md) | 流式响应、上下文管理、多模态输入、安全性 | 你能不能把 AI 特性真正落地成可用的产品功能 |
+| [04·职业发展与面试软实力](04-career-and-interview-soft-skills.md) | "AI 会不会取代 iOS 开发"、简历怎么写、传统八股是否还重要 | 你对行业变化的判断力和表达能力 |
 
 ## 怎么用这个模块
 
